@@ -4,14 +4,14 @@
     <router-view/> -->
     <div class="resume">
       <div class="left">
-        <brief></brief>
-        <contact></contact>
+        <brief :parent_data="result_data"></brief>
+        <contact :parent_data="result_data"></contact>
       </div>
       <div class="right">
-        <about-me class="bottom"></about-me>
-        <skill class="bottom"></skill>
-        <education class="bottom"></education>
-        <experience class="bottom"></experience>
+        <about-me class="bottom" :parent_data="result_data"></about-me>
+        <skill class="bottom" :parent_data="result_data"></skill>
+        <education class="bottom" :parent_data="result_data"></education>
+        <experience class="bottom" :parent_data="result_data"></experience>
       </div>
     </div>
   </div>
@@ -26,6 +26,10 @@ import Education from '@/components/education'
 import Experience from '@/components/experience'
 export default {
   name: 'App',
+  data: function () {
+    return {
+      result_data: require('@/assets/resume.json')}
+  },
   components: { Brief, Contact, AboutMe, Skill, Education, Experience }
 }
 </script>

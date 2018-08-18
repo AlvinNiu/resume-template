@@ -1,17 +1,17 @@
 <template>
-    <div>
-        <div class="title">
-            <h2 class="title">教育经历</h2>
-        </div>
-        <ul>
-            <li v-for="education in educations" :key="education.id" class="list-item-education">
-                <span class="school">{{ education.school }}</span>
-                <span class="major">{{ education.major }}</span>
-                <span class="date">{{ education.date }}</span>
-            </li>
-        </ul>
-
+  <div>
+    <div class="title">
+      <h2 class="title">教育经历</h2>
     </div>
+    <ul>
+      <li v-for="education in educations" :key="education.id" class="list-item-education">
+        <span class="school">{{ education.school }}</span>
+        <span class="major">{{ education.major }}</span>
+        <span class="date">{{ education.date }}</span>
+      </li>
+    </ul>
+
+  </div>
 </template>
 <script>
 export default {
@@ -19,10 +19,12 @@ export default {
   data: function () {
     return {}
   },
+  props: {
+    parent_data: {}
+  },
   computed: {
     educations: function () {
-      var resumeJson = require('@/assets/resume.json')
-      return resumeJson.educations
+      return this.parent_data.educations
     }
   }
 }

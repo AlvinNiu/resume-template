@@ -2,25 +2,25 @@
   <div class="brief">
     <div class="avatar">
       <EditImage :src="require('@/assets/photo.jpg')" width="212" height="212" :isCircle="true" class="img"></EditImage>
-      <div class="name">{{name_cn}}</div>
-      <div class="job">{{job}}</div>
+      <div class="name">{{parent_data.name_cn}}</div>
+      <div class="job">{{parent_data.job}}</div>
       <div class="location">
         <img src="../assets/location.png" alt="">
-        <div class="location-name">{{position}}</div>
+        <div class="location-name">{{parent_data.position}}</div>
       </div>
     </div>
     <div class="info">
       <ul>
         <li>
-          <div class="value">{{sex}}</div>
+          <div class="value">{{parent_data.sex}}</div>
           <div class="key">SEX</div>
         </li>
         <li>
-          <div class="value">{{age}}</div>
+          <div class="value">{{parent_data.age}}</div>
           <div class="key">AGE</div>
         </li>
         <li>
-          <div class="value">{{degree}}</div>
+          <div class="value">{{parent_data.degree}}</div>
           <div class="key">DEGREE</div>
         </li>
       </ul>
@@ -31,8 +31,8 @@
 import EditImage from '@/components/edit-image'
 export default {
   name: 'Brief',
-  data: function () {
-    return require('@/assets/resume.json')
+  props: {
+    parent_data: {}
   },
   components: {
     EditImage

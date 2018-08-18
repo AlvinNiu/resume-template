@@ -1,36 +1,36 @@
 <template>
-    <div>
-        <!-- 联系方式 -->
-        <div class="contact">
-            <div class="list-heading icon-class">
-                <div class="title">
-                    <EditImage :src="require('@/assets/title-contact.png')" height="36" width="36" class="img"></EditImage>
-                    <h2 class="title">{{contactTitle}}</h2>
-                </div>
-            </div>
-            <ul class="list-ul">
-                <li v-for="contact in contacts" :key="contact.type" class="list-item">
-                    <EditImage :src="contact.image" class="img"></EditImage>
-                    <span>{{ contact.title }}</span>
-                </li>
-            </ul>
+  <div>
+    <!-- 联系方式 -->
+    <div class="contact">
+      <div class="list-heading icon-class">
+        <div class="title">
+          <EditImage :src="require('@/assets/title-contact.png')" height="36" width="36" class="img"></EditImage>
+          <h2 class="title">{{contactTitle}}</h2>
         </div>
-        <!-- 社交论坛 -->
-        <div class="contact">
-            <div class="list-heading icon-class">
-                <div class="title">
-                    <EditImage :src="require('@/assets/title-contact.png')" height="36" width="36" class="img"></EditImage>
-                    <h2 class="title">{{socialTitle}}</h2>
-                </div>
-            </div>
-            <ul class="list-ul">
-                <li v-for="social in socials" :key="social.type" class="list-item">
-                    <EditImage :src="social.image" class="img"></EditImage>
-                    <span>{{ social.title }}</span>
-                </li>
-            </ul>
-        </div>
+      </div>
+      <ul class="list-ul">
+        <li v-for="contact in contacts" :key="contact.type" class="list-item">
+          <EditImage :src="contact.image" class="img"></EditImage>
+          <span>{{ contact.title }}</span>
+        </li>
+      </ul>
     </div>
+    <!-- 社交论坛 -->
+    <div class="contact">
+      <div class="list-heading icon-class">
+        <div class="title">
+          <EditImage :src="require('@/assets/title-contact.png')" height="36" width="36" class="img"></EditImage>
+          <h2 class="title">{{socialTitle}}</h2>
+        </div>
+      </div>
+      <ul class="list-ul">
+        <li v-for="social in socials" :key="social.type" class="list-item">
+          <EditImage :src="social.image" class="img"></EditImage>
+          <span>{{ social.title }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 <script>
 import EditImage from '@/components/edit-image'
@@ -42,17 +42,18 @@ export default {
       socialTitle: '社交论坛'
     }
   },
+  props: {
+    parent_data: {}
+  },
   components: {
     EditImage
   },
   computed: {
     contacts: function () {
-      var resumeJson = require('@/assets/resume.json')
-      return resumeJson.contacts
+      return this.parent_data.contacts
     },
     socials: function () {
-      var resumeJson = require('@/assets/resume.json')
-      return resumeJson.socials
+      return this.parent_data.socials
     }
   }
 }

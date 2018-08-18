@@ -1,40 +1,40 @@
 <template>
-    <div>
-        <div class="title">
-            <h2 class="title">工作经历</h2>
-        </div>
-        <ul>
-            <li v-for="experience in experiences" :key="experience.id" class="list-item-experience">
-                <div class="heading">
-                    <span class="company">{{ experience.company_name }}</span>
-                    <span class="job">{{ experience.job }}</span>
-                    <span class="date">{{ experience.date }}</span>
-                </div>
-                <p>
-                    {{ experience.description }}
-                </p>
-                <!-- <h4>项目</h4> -->
-                <ul>
-                    <li v-for="project in experience.projects" :key="project.id" class="project-li">
-                        <div class="project-heading">
-                            <span class="project-name">{{project.project_name}}</span>
-                            <span class="project-name">{{project.role}}</span>
-                            <div>
-                                <span v-for="skill in project.skills" :key="skill.id" class="skill-list" :style="{ width: '30%', padding: '3px', background: skill.color}">{{skill.skill_name}}</span>
-
-                            </div>
-                        </div>
-                        <div class="description-div">
-                            <p v-for="(item, index) in project.description" :key="index" class="decription" style="    font-size: 17px;    line-height: 18px;">
-                                {{item}}
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
+  <div>
+    <div class="title">
+      <h2 class="title">工作经历</h2>
     </div>
+    <ul>
+      <li v-for="experience in experiences" :key="experience.id" class="list-item-experience">
+        <div class="heading">
+          <span class="company">{{ experience.company_name }}</span>
+          <span class="job">{{ experience.job }}</span>
+          <span class="date">{{ experience.date }}</span>
+        </div>
+        <p>
+          {{ experience.description }}
+        </p>
+        <!-- <h4>项目</h4> -->
+        <ul>
+          <li v-for="project in experience.projects" :key="project.id" class="project-li">
+            <div class="project-heading">
+              <span class="project-name">{{project.project_name}}</span>
+              <span class="project-name">{{project.role}}</span>
+              <div>
+                <span v-for="skill in project.skills" :key="skill.id" class="skill-list" :style="{ width: '30%', padding: '3px', background: skill.color}">{{skill.skill_name}}</span>
+
+              </div>
+            </div>
+            <div class="description-div">
+              <p v-for="(item, index) in project.description" :key="index" class="decription" style="    font-size: 17px;    line-height: 18px;">
+                {{item}}
+              </p>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
 </template>
 <script>
 export default {
@@ -44,10 +44,12 @@ export default {
       colors: ['#41b883', '#2883c6', '#f49b16', '#e62120', '#33475c', '#cc146f']
     }
   },
+  props: {
+    parent_data: {}
+  },
   computed: {
     experiences: function () {
-      var resumeJson = require('@/assets/resume.json')
-      resumeJson.woring_experence.forEach(item => {
+      this.parent_data.woring_experence.forEach(item => {
         item.projects.forEach(project => {
           var index = 0
           project.skills.forEach(element => {
@@ -57,7 +59,7 @@ export default {
           })
         })
       })
-      return resumeJson.woring_experence
+      return this.parent_data.woring_experence
     }
   }
 }
